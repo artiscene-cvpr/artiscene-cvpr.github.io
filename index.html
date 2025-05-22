@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .gallery-item {
+            text-align: center;
+            width: 300px; /* Adjust width as needed */
+        }
+        .gallery-item video {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .description {
+            margin-top: 5px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+      <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+      <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet">
+    
+      <link rel="stylesheet" href="static/css/bulma.min.css">
+      <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+      <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+      <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+      <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+      <link rel="stylesheet" href="static/css/index.css">
+    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+      <script defer src="static/js/fontawesome.all.min.js"></script>
+      <script src="static/js/bulma-carousel.min.js"></script>
+      <script src="static/js/bulma-slider.min.js"></script>
+      <script src="static/js/index.js"></script>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <h1 class="title is-1 publication-title">ArtiScene: Language-Driven Artistic 3D Scene Generation Through Image Intermediary
+                </h1>
+    
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block">
+                    Zeqi Gu, Yin Cui, Zhaoshuo Li, Fangyin Wei, Yunhao Ge, Jinwei Gu, Ming-Yu Liu, Abe Davis, Yifan Ding</span>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Designing 3D scenes is traditionally a challenging and laborious task that demands both artistic expertise and proficiency with complex software. 
+                Recent advances in text-to-3D generation have greatly simplified this process by letting users create scenes based on simple text descriptions. 
+                However, as these methods generally require extra training or in-context learning, their performance is often hindered by the limited availability of high-quality 3D data. 
+                In contrast, modern text-to-image models learned from web-scale images can generate scenes with diverse, reliable spatial layouts and consistent, visually appealing styles. 
+                Our key insight is that instead of learning directly from 3D scenes, we can leverage generated 2D images as an intermediary to guide 3D synthesis. 
+                In light of this, we introduce ArtiScene, a training-free automated pipeline for scene design that integrates the flexibility of free-form text-to-image generation with the diversity and reliability of 2D intermediary layouts. 
+                We generate the 2D intermediary image from a scene description, extract object shapes and appearances, create 3D models, and assemble them into the final scene with geometry, position, and pose extracted from the same image. 
+                Being generalizable to a wide range of scenes and styles, ArtiScene is shown to outperform state-of-the-art benchmarks by a large margin in layout and aesthetic quality by quantitative metrics. 
+                It also averages a 74.89% winning rate in extensive user studies and 95.07% in GPT evaluation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+    
+    <!-- Youtube video -->
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <!-- Paper video. -->
+          <h2 class="title is-3">Method</h2>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="publication-video">
+                <img src="static/images/pipeline_3-compressed.png" alt="train_pipeline"/>
+                <p>
+                    Taking a text prompt as input, ArtiScene first prompts a text-to-image model for an image intermediary (yellow line). 
+                    Then through object detection, inpainting, and prompting ChatGPT to describe the detected objects' appearance and geometry, we acquire a 3D model for each object (blue line). 
+                    In parallel, we combine monocular depth estimation with the formerly detected 2D bounding boxes to estimate the 3D bounding boxes of each object (red line). We also synthesize the floor and wall textures for indoor scenes (green line). 
+                    In the end, we assemble these acquired models and layout information to arrive at the final 3D scene.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+          <div class="container">
+            <h2 class="title is-3">Divserse Styles</h2>
+            <h5 class="title is-5">Below, we provide video renderings of generated 3D scenes rotating around its center.</h5>
+            <div id="results-carousel" class="carousel results-carousel">
+             <div class="item">
+              <!-- <img src="static/videos/website_results/diverse/0000_space_clinic room/fps10_-5050.gif"  width =215 height=230/> -->
+              <img src="static/videos/website_results/diverse/0000_pink_clinic room/fps10_-5050.gif"  width =215 height=230/>
+              <img src="static/videos/website_results/holodeck/a_pink-themed_clinic_room-2024-11-09-03-03-42-084616/fps10_-5050.gif"  width =215 height=230/>
+               <img src="static/videos/website_results/diverse/0000_Barbie_clinic room/fps10_-5050.gif"   width =215 height=230/>
+
+               <img src="static/videos/website_results/holodeck/a_Barbie-themed_clinic_room-2024-11-09-15-12-59-502656/fps10_-5050.gif"  width =215 height=230/>
+               <img src="static/videos/website_results/diverse/0002_Barbie_clinic room/fps10_-5050.gif"  width =215 height=230/>
+               <img src="static/videos/website_results/holodeck/a_Barbie-themed_clinic_room-2024-11-09-12-25-09-935704/fps10_-5050.gif"  width =215 height=230/>
+              <h2 class="subtitle has-text-centered">
+                Clinic Rooms. We show pairs of our result (left) and Holodeck's (right). The style for each pair is written on the Holodeck side. <hr>
+            </h2>
+            </div>
+            <div class="item">
+              <img src="static/videos/website_results/diverse/0002_purple_bedroom/fps10_-5050.gif"  width =215 height=230/>
+              <img src="static/videos/website_results/holodeck/a_purple-themed_bedroom-2024-11-09-15-23-22-607647/fps10_-5050.gif"  width =215 height=230/>
+              <!-- <img src="static/videos/website_results/diverse/0001_pink_bedroom/fps10_-5050.gif"  width =215 height=230/> -->
+               <img src="static/videos/website_results/diverse/0002_space_bedroom/fps10_-5050.gif"   width =215 height=230/>
+               <img src="static/videos/website_results/holodeck/a_space-themed_bedroom-2024-11-09-02-46-33-794824/fps10_-5050.gif"  width =215 height=230/>
+
+              <img src="static/videos/website_results/diverse/0000_Bohemian_bedroom/fps10_-5050.gif"  width =215 height=230/>
+              <!-- <img src="static/videos/website_results/diverse/0002_art deco_bedroom/fps10_-5050.gif"  width =215 height=230/> -->
+              <img src="static/videos/website_results/holodeck/a_Bohemian-styled_bedroom-2024-11-06-17-02-19-294810/fps10_-5050.gif"   width =215 height=230/>
+              <h2 class="subtitle has-text-centered">
+                Bedrooms. We show pairs of our result (left) and Holodeck's (right). The style for each pair is written on the Holodeck side. <hr>
+            </h2>
+           </div>
+           <div class="item">
+            <img src="static/videos/website_results/diverse/0001_space_bathroom/fps10_-5050.gif"  width =215 height=230/>
+            <img src="static/videos/website_results/holodeck/a_space-themed_bathroom-2024-11-09-11-38-58-812420/fps10_-5050.gif"   width =215 height=230/>
+             <!-- <img src="static/videos/website_results/diverse/0001_pink_bathroom/fps10_-5050.gif"   width =215 height=230/> -->
+
+             <img src="static/videos/website_results/diverse/0000_teenager_bathroom/fps10_-5050.gif"  width =215 height=230/>
+             <img src="static/videos/website_results/holodeck/a_teenager-styled_bathroom-2024-11-06-17-57-20-049120/fps10_-5050.gif"   width =215 height=230/>
+             <img src="static/videos/website_results/diverse/0002_Victorian_bathroom/fps10_-5050.gif"  width =215 height=230/>
+              <!-- <img src="static/videos/website_results/diverse/0001_pink_bathroom/fps10_-5050.gif"   width =215 height=230/> -->
+              <img src="static/videos/website_results/holodeck/a_Victorian-styled_bathroom-2024-11-06-18-45-58-835464/fps10_-5050.gif"   width =215 height=230/>
+              <h2 class="subtitle has-text-centered">
+                Bathrooms. We show pairs of our result (left) and Holodeck's (right). The style for each pair is written on the Holodeck side. <hr>
+            </h2>
+         </div>
+        </div>
+      </div>
+      </div>
+      </section>
+   
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+        <h2 class="title is-3">Diverse Scene Categories</h2>
+        <div class="gallery">
+            <!-- Add more rows as needed -->
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/dental office_0001/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a dental office</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/game_room2/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a game room</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/meeting room_0000/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a meeting room</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/nursery_0003/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a nursery</div>
+            </div>
+        </div>
+        <div class="gallery">
+            <!-- Add more rows as needed -->
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/prison cell_0004/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a prison</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/waiting room_0000/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a waiting room</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/music studio_0003/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a music studio</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/operating room_0003/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a operating room</div>
+            </div>
+        </div>
+        <div class="gallery">
+            <!-- Add more rows as needed -->
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/clinic/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a clinic</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/deli_0004/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a deli</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/video store_0003/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a video store</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/cute_living_2/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a living room</div>
+            </div>
+        </div>
+        <div class="gallery">
+            <!-- Example Videos -->
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/bakery_0003/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a bakery</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/children room_0003/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a children room</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/0000_art deco_locker room/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a art deco-styled locker room</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay loop muted>
+                    <source src="static/videos/website_results/diverse/chinese_bedroom/fps10_-5050.mp4" type="video/mp4">
+                </video>
+                <div class="description">a Chinese bedroom</div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+      <h2 class="title is-3">Extensions</h2>
+      <div class="gallery">
+          <!-- Example Videos -->
+          <div class="gallery-item">
+              <video autoplay loop muted>
+                  <source src="static/videos/website_results/diverse/garage/fps10_-5050.mp4" type="video/mp4">
+              </video>
+              <div class="description">a garage (Before car editing)</div>
+          </div>
+          <div class="gallery-item">
+              <video autoplay loop muted>
+                  <source src="static/videos/website_results/diverse/garage/fps10_edit_-5050.mp4" type="video/mp4">
+              </video>
+              <div class="description">a garage (After car editing)</div>
+          </div>
+          <div class="gallery-item">
+              <video autoplay loop muted>
+                  <source src="static/videos/website_results/diverse/0000_Chinese garden/fps10_-5050.mp4" type="video/mp4">
+              </video>
+              <div class="description">a Chinese garden (Outdoor)</div>
+          </div>
+          <div class="gallery-item">
+              <video autoplay loop muted>
+                  <source src="static/videos/website_results/diverse/0000_Indian temple/fps10_-5050.mp4" type="video/mp4">
+              </video>
+              <div class="description">a Indian temple (Outdoor)</div>
+          </div>
+      </div>
+    </div>
+</section>     
+</body>
+</html>
